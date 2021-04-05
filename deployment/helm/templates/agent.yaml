@@ -39,6 +39,10 @@ spec:
         {{- with .Values.agent.image.pullPolicy }}
         imagePullPolicy: {{ . }}
         {{- end }}
+        {{- if .Values.agent.resources }}
+        resources:
+        {{- toYaml .Values.agent.resources | nindent 10 }}
+        {{- end }}
         {{- if .Values.agent.securityContext }}
         securityContext:
         {{- toYaml .Values.agent.securityContext | nindent 10 }}
